@@ -1,17 +1,12 @@
-# Hybrid key exchange in TLS 1.3
+# Recommendations for Post-Quantum Cryptographic Migration in IETF-Specified Protocols
 
-This is the working area for the IETF [TLS Working Group](https://datatracker.ietf.org/wg/tls/documents/) Internet-Draft, "Hybrid key exchange in TLS 1.3".
-
-* [Editor's Copy](https://dstebila.github.io/draft-ietf-tls-hybrid-design/#go.draft-ietf-tls-hybrid-design.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design)
-* [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-tls-hybrid-design)
-* [Compare Editor's Copy to Working Group Draft](https://dstebila.github.io/draft-ietf-tls-hybrid-design/#go.draft-ietf-tls-hybrid-design.diff)
+This is the working area for the IETF [PQUIP Working Group](https://datatracker.ietf.org/wg/pquip/documents/) Internet-Draft.
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/dstebila/draft-ietf-tls-hybrid-design/blob/master/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/kriskwiatkowski/draft-kwiatkowski-pqc-migration/blob/master/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
@@ -27,4 +22,3 @@ $ make
 
 Command line usage requires that you have the necessary software installed.  See
 [the instructions](https://github.com/martinthomson/i-d-template/blob/main/doc/SETUP.md).
-
