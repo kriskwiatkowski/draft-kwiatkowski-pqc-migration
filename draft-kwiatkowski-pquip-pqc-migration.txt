@@ -1,0 +1,151 @@
+
+
+
+
+Post-Quantum Use In Protocols                             K. Kwiatkowski
+Internet-Draft                                               7 June 2025
+Intended status: Informational                                          
+Expires: 9 December 2025
+
+
+             Guidance for migration to Post-Quantum schemes
+              draft-kwiatkowski-pquip-pqc-migration-latest
+
+Abstract
+
+   This document provides guidance for the migration to post-quantum
+   cryptography (PQC) in internet protocols.  It outlines the challenges
+   and considerations that protocol designers and implementers should
+   take into account when transitioning from classical cryptographic
+   algorithms to PQC algorithms, which are designed to be secure against
+   quantum computer attacks.
+
+   It is intended for cryptographic protocol designers within the IETF
+   community, as well as technology developers and implementers
+   responsible for deploying PQC standards.
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-kwiatkowski-pquip-pqc-
+   migration/.
+
+   Discussion of this document takes place on the Post-Quantum Use In
+   Protocols Working Group mailing list (mailto:pquip@ietf.org), which
+   is archived at https://mailarchive.ietf.org/arch/browse/pqc/.
+   Subscribe at https://www.ietf.org/mailman/listinfo/pquip/.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 9 December 2025.
+
+Copyright Notice
+
+   Copyright (c) 2025 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Awarness
+   3.  Key exchange
+   4.  Digital signatures
+   5.  FIPS
+   6.  Infrastructure costs
+   7.  Anti-patterns
+   8.  Conventions and Definitions
+   9.  Security Considerations
+   10. IANA Considerations
+   11. References
+     11.1.  Normative References
+     11.2.  Informative References
+   Author's Address
+
+1.  Introduction
+
+   Advances in quantum computing pose a growing threat to systems that
+   rely on widely deployed internet security protocols, which use
+   cryptographic mechanisms to secure communications, verify
+   authenticity, and protect sensitive data at rest and in transit.
+   While a cryptographically relevant quantum computer (CRQC) capable of
+   breaking these protections may still be years away, initiating the
+   transition to post-quantum cryptography (PQC) now is essential to
+   ensure adequate time for planning and implementation.
+
+2.  Awarness
+
+3.  Key exchange
+
+4.  Digital signatures
+
+5.  FIPS
+
+6.  Infrastructure costs
+
+7.  Anti-patterns
+
+8.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+9.  Security Considerations
+
+10.  IANA Considerations
+
+11.  References
+
+11.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [rfc7748]  Langley, A., Hamburg, M., and S. Turner, "Elliptic Curves
+              for Security", RFC 7748, DOI 10.17487/RFC7748, January
+              2016, <https://www.rfc-editor.org/rfc/rfc7748>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+11.2.  Informative References
+
+   [tlsiana]  Salowey, J. A. and S. Turner, "IANA Registry Updates for
+              TLS and DTLS", Work in Progress, Internet-Draft, draft-
+              ietf-tls-rfc8447bis-13, 29 May 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
+              rfc8447bis-13>.
+
+Author's Address
+
+   Kris Kwiatkowski
+   Email: kris@amongbytes.com
