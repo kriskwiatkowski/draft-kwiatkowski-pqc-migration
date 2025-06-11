@@ -7,7 +7,7 @@
 <title>Guidance for migration to Post-Quantum schemes</title>
 <meta content="Kris Kwiatkowski" name="author">
 <meta content="
-       This document provides guidance for the migration to post-quantum cryptography
+       This document provides guidance on migration to post-quantum cryptography
 (PQC) in internet protocols. It outlines the challenges and considerations that
 protocol designers and implementers should take into account when transitioning
 from classical cryptographic algorithms to PQC algorithms, which are designed
@@ -1085,7 +1085,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">Guidance for migration to Post-Quantum schemes</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document provides guidance for the migration to post-quantum cryptography
+<p id="section-abstract-1">This document provides guidance on migration to post-quantum cryptography
 (PQC) in internet protocols. It outlines the challenges and considerations that
 protocol designers and implementers should take into account when transitioning
 from classical cryptographic algorithms to PQC algorithms, which are designed
@@ -1227,21 +1227,23 @@ time for planning and implementation.<a href="#section-1-1" class="pilcrow">¶</
       <h2 id="name-awarness">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-awarness" class="section-name selfRef">Awarness</a>
       </h2>
-<p id="section-2-1">Before starting the PQC migration journey, an organization needs to assess whether
-it should begin the process immediately or follow a later timeline. Determining
-the appropriate timeline involves estimating migration, information shelf-life,
-and threat timelines. The shelf-life of sensitive information can impact the urgency
-of PQC adoption, as adversaries might harvest present-day information for later
-decryption with a CRQC. Regardless of whether an organization faces the
-harvest-now-decrypt-later threat, it must be prepared to secure critical information
-against integrity and authenticity threats that will arise with CRQCs.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">Organizations should clarify their PQC migration aims, which initially defines
-the level of risk the organization is willing to take in protecting its data
-and assets. This risk tolerance will guide the selection of PQC algorithms,
-protocols, and implementation strategies. It is crucial to understand that the
-migration to PQC is not a one-time event but an ongoing process that requires
-continuous monitoring, evaluation, and adaptation to new threats and advancements
-in quantum computing.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-1">Before embarking on the transition to post-quantum cryptography (PQC),
+organizations must first evaluate whether to begin the migration immediately or
+adopt a phased timeline. This decision depends on factors such as the duration
+required for migration, the expected shelf-life of sensitive data, and the
+projected timeline for quantum threats. Data with long-term confidentiality
+requirements may increase the urgency, as adversaries could collect encrypted
+information today and decrypt it in the future using a cryptographically
+relevant quantum computer (CRQC). Even in the absence of a direct
+harvest-now-decrypt-later threat, organizations must still prepare to protect
+data integrity and authenticity against future quantum-enabled attacks.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">To guide this process, organizations should clearly define their PQC migration
+objectives, starting with an assessment of their risk tolerance - how much risk
+they are willing to accept in safeguarding data and assets. This assessment
+will shape the choice of PQC algorithms, protocols, and implementation paths.
+It's important to recognize that PQC migration is not a one-off upgrade but
+a continuous effort that requires ongoing threat monitoring, periodic reassessments,
+and adaptability as quantum technology evolves.<a href="#section-2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="key-exchange">
@@ -1263,7 +1265,6 @@ they offer: even if one of the underlying algorithms is broken (e.g., the classi
 or post-quantum scheme), the confidentiality of the session remains protected as long
 as the other holds. This property is essential in practice, since encrypted data
 captured today could be decrypted in the future if a single algorithm fails.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">TODO<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="digital-signatures">
@@ -1282,7 +1283,7 @@ scheme is expected to be a publicly known event, allowing protocols and
 infrastructure to adapt promptly. Therefore, while post-quantum signature algorithms
 are essential for long-term security, their deployment can follow a more measured
 timeline.<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">TODO<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-3">TODO: migration strategies, hybrid signatures vs dual signatures, etc.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <div id="hybrid-digital-signatures">
 <section id="section-4.1">
         <h3 id="name-hybrid-digital-signatures">
@@ -1330,6 +1331,7 @@ define the individual signature algorithms, which can then be used as components
 in a hybrid scheme.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <p id="section-5-3">Migration plans must align with CMVP guidance and anticipate validation
 pathways for post-quantum schemes.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-4">TODO: Mention SP800-56C and lack of standardization for hybrid signatures.<a href="#section-5-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="infrastructure-costs">
@@ -1357,56 +1359,62 @@ associated costs:<a href="#section-6-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-6-5.1">
           <p id="section-6-5.1.1">Network Protocols and Systems: Protocols like TLS, SSH, and QUIC, widely used
-in telecom networks and general IT infrastructure, need to integrate PQC for key
-exchange and authentication. While the computational performance impact of PQC
-Key Encapsulation Mechanisms (KEMs) like ML-KEM on handshake speed is often minimal
-or even faster compared to traditional methods, the size of PQC artifacts is
-much larger, which can lead to increased bandwidth usage and potential delays.<a href="#section-6-5.1.1" class="pilcrow">¶</a></p>
+in telecom networks and general IT infrastructure, need to integrate PQC for
+key exchange and authentication. While the computational performance impact
+of PQC Key Encapsulation Mechanisms (KEMs) like ML-KEM on handshake speed is
+often minimal or even faster compared to traditional methods, the size of PQC
+artifacts is much larger, which can lead to increased bandwidth usage and
+potential delays.<a href="#section-6-5.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-6-5.2">
-          <p id="section-6-5.2.1">Certificate Size Impact: Larger certificate sizes, especially for PQC signature
-algorithms like Dilithium, can impact network performance, particularly in protocols
-like QUIC. This is due to interaction with network parameters like the amplification
-window, congestion control, and initial round-trip time estimates, potentially causing
-extra round trips and delays. While tweaking these parameters can alleviate some issues,
-it involves trade-offs, which relate to operational network costs (bandwidth, latency).<a href="#section-6-5.2.1" class="pilcrow">¶</a></p>
+          <p id="section-6-5.2.1">Certificate Size Impact: Larger certificate sizes, especially for PQC
+signature algorithms like ML-DSA, can impact network performance. This is
+due to interaction with network parameters like the amplification window,
+congestion control, and initial round-trip time estimates, potentially
+causing extra round trips and delays. While tweaking these parameters can
+alleviate some issues, it involves trade-offs, which relate to operational
+network costs (bandwidth, latency).<a href="#section-6-5.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-6-5.3">
-          <p id="section-6-5.3.1">Message Processing: The way PQC signature algorithms process messages (often processing
-the whole message internally) differs from the traditional "digest-then-sign" approach.
-For very large messages, this can impact performance, especially when streaming data to
-constrained signing entities like HSMs via APIs like PKCS#11 . While digesting before
-signing can improve performance for large messages , it reintroduces collision risk
-and adds complexity . Implementing and managing these different processing methods across
-various systems can add to development and operational costs.<a href="#section-6-5.3.1" class="pilcrow">¶</a></p>
+          <p id="section-6-5.3.1">Message Processing: The way PQC signature algorithms process messages
+(often processing the whole message internally) differs from the traditional
+"digest-then-sign" approach. For very large messages, this can impact
+performance, especially when streaming data to constrained signing entities
+like HSMs via APIs like PKCS#11 . While digesting before signing can improve
+performance for large messages , it reintroduces collision risk and adds
+complexity. Implementing and managing these different processing methods
+across various systems can add to development and operational costs.<a href="#section-6-5.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-6-5.4">
-          <p id="section-6-5.4.1">Public Key Infrastructure (PKI): The PKI supporting systems needs to be updated to
-handle PQC keys and certificates. This involves changes to Certificate Authorities (CAs),
-certificate formats (e.g., X.509), and related processes. Various hybrid certificate formats
-are being explored to facilitate the transition, each with different complexity and potential
-overhead [8.1.2, 350, 351]. The deployment of new Trust Anchors can also be a time-consuming
-and costly process, especially in environments with constrained devices.<a href="#section-6-5.4.1" class="pilcrow">¶</a></p>
+          <p id="section-6-5.4.1">Public Key Infrastructure (PKI): The PKI supporting systems needs to be
+updated to handle PQC keys and certificates. This involves changes to
+Certificate Authorities (CAs), certificate formats (e.g., X.509), and related
+processes. Various hybrid certificate formats are being explored to facilitate
+the transition, each with different complexity and potential overhead. The
+deployment of new Trust Anchors can also be a time-consuming and costly
+process.<a href="#section-6-5.4.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-6-5.5">
-          <p id="section-6-5.5.1">Constrained Devices: Devices with long operational lifetimes in environments like
-industrial control systems, vehicles, satellites, smart meters, and smart cards present
-unique challenges and potential costs. Upgrading cryptographic capabilities on such devices
-may be difficult or even impossible due to resource constraints, physical location, or
-immutability features, potentially requiring expensive field updates or device replacement.<a href="#section-6-5.5.1" class="pilcrow">¶</a></p>
+          <p id="section-6-5.5.1">Constrained Devices: Devices with long operational lifetimes in
+environments like industrial control systems, vehicles, satellites, smart
+meters, and smart cards present unique challenges and potential costs.
+Upgrading cryptographic capabilities on such devices may be difficult or even
+impossible due to resource constraints, physical location, or immutability
+features, potentially requiring expensive field updates or device replacement.<a href="#section-6-5.5.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-6-5.6">
-          <p id="section-6-5.6.1">Hybrid Implementations: While motivated by security concerns during the transition period,
-hybrid signature strategies can introduce increased complexity and potential overhead in terms
-of data size. The use of hybrids also implies a potential future migration when one or both
-constituent algorithms become obsolete, deferring some costs rather than eliminating them. The
-combinatorial explosion of combining various classical and PQC schemes adds complexity to
-implementation and testing.<a href="#section-6-5.6.1" class="pilcrow">¶</a></p>
+          <p id="section-6-5.6.1">Hybrid Implementations: While motivated by security concerns during the
+transition period, hybrid signature strategies can introduce increased complexity
+and potential overhead in terms of data size. The use of hybrids also implies a
+potential future migration when one or both constituent algorithms become obsolete,
+deferring some costs rather than eliminating them. The combinatorial explosion of
+combining various classical and PQC schemes adds complexity to implementation
+and testing.<a href="#section-6-5.6.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-6-6">Beyond direct hardware and software costs,continuous monitoring and evaluation are also necessary
-to track migration progress and adapt to evolving quantum capabilities, requiring ongoing resource
-commitment.<a href="#section-6-6" class="pilcrow">¶</a></p>
+<p id="section-6-6">Beyond direct hardware and software costs, continuous monitoring and evaluation
+are also necessary to track migration progress and adapt to evolving quantum
+capabilities, requiring ongoing resource commitment.<a href="#section-6-6" class="pilcrow">¶</a></p>
 <p id="section-6-7">TODO: How to monitor?<a href="#section-6-7" class="pilcrow">¶</a></p>
 <p id="section-6-8">Adopting principles like cryptographic agility is highlighted as a way to manage costs
 in the long term by designing systems that can undergo multiple cryptographic transitions

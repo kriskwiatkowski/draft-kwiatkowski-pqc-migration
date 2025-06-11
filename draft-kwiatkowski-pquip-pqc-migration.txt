@@ -13,7 +13,7 @@ Expires: 13 December 2025
 
 Abstract
 
-   This document provides guidance for the migration to post-quantum
+   This document provides guidance on migration to post-quantum
    cryptography (PQC) in internet protocols.  It outlines the challenges
    and considerations that protocol designers and implementers should
    take into account when transitioning from classical cryptographic
@@ -99,25 +99,27 @@ Table of Contents
 
 2.  Awarness
 
-   Before starting the PQC migration journey, an organization needs to
-   assess whether it should begin the process immediately or follow a
-   later timeline.  Determining the appropriate timeline involves
-   estimating migration, information shelf-life, and threat timelines.
-   The shelf-life of sensitive information can impact the urgency of PQC
-   adoption, as adversaries might harvest present-day information for
-   later decryption with a CRQC.  Regardless of whether an organization
-   faces the harvest-now-decrypt-later threat, it must be prepared to
-   secure critical information against integrity and authenticity
-   threats that will arise with CRQCs.
+   Before embarking on the transition to post-quantum cryptography
+   (PQC), organizations must first evaluate whether to begin the
+   migration immediately or adopt a phased timeline.  This decision
+   depends on factors such as the duration required for migration, the
+   expected shelf-life of sensitive data, and the projected timeline for
+   quantum threats.  Data with long-term confidentiality requirements
+   may increase the urgency, as adversaries could collect encrypted
+   information today and decrypt it in the future using a
+   cryptographically relevant quantum computer (CRQC).  Even in the
+   absence of a direct harvest-now-decrypt-later threat, organizations
+   must still prepare to protect data integrity and authenticity against
+   future quantum-enabled attacks.
 
-   Organizations should clarify their PQC migration aims, which
-   initially defines the level of risk the organization is willing to
-   take in protecting its data and assets.  This risk tolerance will
-   guide the selection of PQC algorithms, protocols, and implementation
-   strategies.  It is crucial to understand that the migration to PQC is
-   not a one-time event but an ongoing process that requires continuous
-   monitoring, evaluation, and adaptation to new threats and
-   advancements in quantum computing.
+   To guide this process, organizations should clearly define their PQC
+   migration objectives, starting with an assessment of their risk
+   tolerance - how much risk they are willing to accept in safeguarding
+   data and assets.  This assessment will shape the choice of PQC
+   algorithms, protocols, and implementation paths.  It's important to
+   recognize that PQC migration is not a one-off upgrade but a
+   continuous effort that requires ongoing threat monitoring, periodic
+   reassessments, and adaptability as quantum technology evolves.
 
 3.  Key exchange
 
@@ -143,8 +145,6 @@ Table of Contents
    data captured today could be decrypted in the future if a single
    algorithm fails.
 
-   TODO
-
 4.  Digital signatures
 
    Digital signatures remain a vital component of cryptographic
@@ -163,7 +163,8 @@ Table of Contents
    signature algorithms are essential for long-term security, their
    deployment can follow a more measured timeline.
 
-   TODO
+   TODO: migration strategies, hybrid signatures vs dual signatures,
+   etc.
 
 4.1.  Hybrid digital signatures
 
@@ -212,6 +213,9 @@ Table of Contents
    Migration plans must align with CMVP guidance and anticipate
    validation pathways for post-quantum schemes.
 
+   TODO: Mention SP800-56C and lack of standardization for hybrid
+   signatures.
+
 6.  Infrastructure costs
 
    Migrating to post-quantum cryptography (PQC) necessitates potentially
@@ -248,14 +252,13 @@ Table of Contents
       usage and potential delays.
 
    *  Certificate Size Impact: Larger certificate sizes, especially for
-      PQC signature algorithms like Dilithium, can impact network
-      performance, particularly in protocols like QUIC.  This is due to
-      interaction with network parameters like the amplification window,
-      congestion control, and initial round-trip time estimates,
-      potentially causing extra round trips and delays.  While tweaking
-      these parameters can alleviate some issues, it involves trade-
-      offs, which relate to operational network costs (bandwidth,
-      latency).
+      PQC signature algorithms like ML-DSA, can impact network
+      performance.  This is due to interaction with network parameters
+      like the amplification window, congestion control, and initial
+      round-trip time estimates, potentially causing extra round trips
+      and delays.  While tweaking these parameters can alleviate some
+      issues, it involves trade-offs, which relate to operational
+      network costs (bandwidth, latency).
 
    *  Message Processing: The way PQC signature algorithms process
       messages (often processing the whole message internally) differs
@@ -264,7 +267,7 @@ Table of Contents
       data to constrained signing entities like HSMs via APIs like
       PKCS#11 . While digesting before signing can improve performance
       for large messages , it reintroduces collision risk and adds
-      complexity . Implementing and managing these different processing
+      complexity.  Implementing and managing these different processing
       methods across various systems can add to development and
       operational costs.
 
@@ -273,10 +276,8 @@ Table of Contents
       changes to Certificate Authorities (CAs), certificate formats
       (e.g., X.509), and related processes.  Various hybrid certificate
       formats are being explored to facilitate the transition, each with
-      different complexity and potential overhead [8.1.2, 350, 351].
-      The deployment of new Trust Anchors can also be a time-consuming
-      and costly process, especially in environments with constrained
-      devices.
+      different complexity and potential overhead.  The deployment of
+      new Trust Anchors can also be a time-consuming and costly process.
 
    *  Constrained Devices: Devices with long operational lifetimes in
       environments like industrial control systems, vehicles,
@@ -296,7 +297,7 @@ Table of Contents
       combinatorial explosion of combining various classical and PQC
       schemes adds complexity to implementation and testing.
 
-   Beyond direct hardware and software costs,continuous monitoring and
+   Beyond direct hardware and software costs, continuous monitoring and
    evaluation are also necessary to track migration progress and adapt
    to evolving quantum capabilities, requiring ongoing resource
    commitment.
