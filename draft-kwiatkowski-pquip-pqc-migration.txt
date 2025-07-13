@@ -8,7 +8,7 @@ Intended status: Informational
 Expires: 14 January 2026
 
 
-             Guidance for migration to Post-Quantum schemes
+          Guidance for migration to Post-Quantum Cryptography
               draft-kwiatkowski-pquip-pqc-migration-latest
 
 Abstract
@@ -71,13 +71,13 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
-   2.  Awarness
+   2.  Awareness
    3.  Key exchange
    4.  Digital signatures
-     4.1.  Hybrid digital signatures
+     4.1.  PQ/T hybrid digital signatures
    5.  Infrastructure costs
-   6.  FIPS
-   7.  Anti-patterns
+   6.  Standards Compliance
+   7.  Migration Pitfalls
    8.  Conventions and Definitions
    9.  Security Considerations
    10. IANA Considerations
@@ -97,7 +97,7 @@ Table of Contents
    transition to post-quantum cryptography (PQC) now is essential to
    ensure adequate time for planning and implementation.
 
-2.  Awarness
+2.  Awareness
 
    Before embarking on the transition to post-quantum cryptography
    (PQC), organizations must first evaluate whether to begin the
@@ -149,8 +149,8 @@ Table of Contents
    signatures involve persistent keys, certificates, and complex trust
    infrastructure, making their transition more disruptive.
 
-   The expectation is that importance of hybrid KEMs will diminish in
-   time as confidence in post-quantum algorithms grows.
+   The expectation is that importance of PQ/T hybrid KEMs will diminish
+   in time as confidence in post-quantum algorithms grows.
 
 4.  Digital signatures
 
@@ -163,7 +163,7 @@ Table of Contents
 
    Unlike key exchange, authentication cannot be broken retrospectively,
    meaning quantum-safe signatures are only needed once
-   cryptanalytically relevant quantum computers (CRCQs) become
+   cryptanalytically relevant quantum computers (CRQCs) become
    available.  As a result, the migration to post-quantum digital
    signatures is less time-sensitive than for KEMs, allowing for a more
    deliberate and carefully planned transition.  Since post-quantum
@@ -175,15 +175,16 @@ Table of Contents
    TODO: migration strategies, hybrid signatures vs dual signatures,
    etc.
 
-4.1.  Hybrid digital signatures
+4.1.  PQ/T hybrid digital signatures
 
-   Hybrid digital signatures, which combine traditional and post-quantum
-   algorithms, aim to provide resilience against future quantum threats
-   by ensuring that if either algorithm remains secure, the signature
-   remains valid.  This dual-layer approach offers protection in the
-   face of current uncertainty around newly standardized post-quantum
-   schemes and implementations of them.  However, hybrid signatures
-   introduce considerable implementation and operational complexity:
+   PQ/T hybrid digital signatures, which combine traditional and post-
+   quantum algorithms, aim to provide resilience against future quantum
+   threats by ensuring that if either algorithm remains secure, the
+   signature remains valid.  This dual-layer approach offers protection
+   in the face of current uncertainty around newly standardized post-
+   quantum schemes and implementations of them.  However, hybrid
+   signatures introduce considerable implementation and operational
+   complexity:
 
    *  The number of possible hybrid combinations leads to
       interoperability challenges and increased implementation burden.
@@ -302,41 +303,46 @@ Table of Contents
    and implementation to support simultaneous use or dynamic negotiation
    of algorithms.
 
-6.  FIPS
+6.  Standards Compliance
 
    Protocol designers are encouraged to prioritize solutions that
-   maintain compliance with industry-trusted standards, like FIPS, to
-   ensure alignment with regulatory requirements.
+   conform to established, widely trusted standards such as FIPS.  This
+   helps ensure compatibility with regulatory requirements and
+   facilitates future certification.  Migration strategies should align
+   with guidance such as CMVP, and anticipate the certification process
+   for post-quantum algorithms.
 
-   One feature that PQ/T hybrid implementations provide is defense in
-   deep.  That is needed while implementations of new post-quantum
-   schemes is maturing, the fact of having another implementation as a
-   backup provides a guarantee that even if post-quantum implementation
-   fails, the other one is solid.
+   With the NIST standardization of post-quantum algorithms (e.g.,
+   [NIST-FIPS-203], [NIST-FIPS-204], [NIST-FIPS-205] and
+   [NIST-SP-800-208]), the certification pathway is becoming clearer and
+   more structured.  However, during the transitional period—while post-
+   quantum implementations mature—it may be beneficial to adopt PQC/T
+   approaches.  These offer several advantages:
 
-   Migration plans must align with CMVP guidance and anticipate
-   validation pathways for post-quantum schemes.
+   *  They provide defense in depth by enabling fallback to a well-
+      established, thoroughly vetted implementations of traditional
+      schemes.
 
-   FIPS-compliance of shared secret concatenation.  [NIST-SP-800-56C] or
-   [NIST-SP-800-135] give NIST recommendations for key derivation
-   methods in key exchange protocols.  Some hybrid combinations may
-   combine the shared secret from a NIST-approved algorithm with a
-   shared secret from a non-approved algorithm (e.g., post-quantum).
-   [NIST-SP-800-56C] lists simple concatenation as an approved method
-   for generation of a hybrid shared secret in which one of the
-   constituent shared secret is from an approved method.
+   *  Since the certification process is typically lengthy, using
+      already-certified traditional implementations alongside post-
+      quantum algorithms still undergoing certification is a practical
+      approach for deployments that require approved component schemes.
 
-   Hybrid signature schemes or formats themselves are approved by CMVP
-   validation.  The FIPS standards (204, 205, 206 and SP800-208) define
-   the individual signature algorithms, which can then be used as
-   components in a hybrid scheme.
+   NIST guidance documents such as [NIST-SP-800-56C] and
+   [NIST-SP-800-135] offer precedents for this approach.  For example,
+   in key agreement schemes, hybrid shared secrets can be formed by
+   combining output from a NIST-approved algorithm with that of a non-
+   approved one.  [NIST-SP-800-56C] specifically endorses simple
+   concatenation as an acceptable method for deriving hybrid shared
+   secrets, provided at least one component is generated by an approved
+   mechanism.
 
-7.  Anti-patterns
+7.  Migration Pitfalls
 
    Several practices should be avoided during PQC migration:
 
-   *  Key reuse across modes: Using the same keypair for hybrid and non-
-      hybrid signatures risks downgrade attacks.
+   *  Key reuse across modes: Using the same keypair for PQ/T hybrid and
+      traditional signatures risks downgrade attacks.
 
    *  Dynamic algorithm negotiation: Negotiating algorithm types at
       runtime (e.g., in TLS) can allow downgrade or confusion attacks.
@@ -401,11 +407,36 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-pquip-
               pqc-hsm-constrained-01>.
 
+   [NIST-FIPS-203]
+              "Module-lattice-based key-encapsulation mechanism
+              standard", National Institute of Standards and Technology
+              (U.S.), DOI 10.6028/nist.fips.203, August 2024,
+              <https://doi.org/10.6028/nist.fips.203>.
+
+   [NIST-FIPS-204]
+              "Module-lattice-based digital signature standard",
+              National Institute of Standards and Technology (U.S.),
+              DOI 10.6028/nist.fips.204, August 2024,
+              <https://doi.org/10.6028/nist.fips.204>.
+
+   [NIST-FIPS-205]
+              "Stateless hash-based digital signature standard",
+              National Institute of Standards and Technology (U.S.),
+              DOI 10.6028/nist.fips.205, August 2024,
+              <https://doi.org/10.6028/nist.fips.205>.
+
    [NIST-SP-800-135]
               Dang, Q., "Recommendation for existing application-
               specific key derivation functions", National Institute of
               Standards and Technology, DOI 10.6028/nist.sp.800-135r1,
               2011, <https://doi.org/10.6028/nist.sp.800-135r1>.
+
+   [NIST-SP-800-208]
+              Cooper, D., Apon, D., Dang, Q., Davidson, M., Dworkin, M.,
+              and C. Miller, "Recommendation for Stateful Hash-Based
+              Signature Schemes", National Institute of Standards and
+              Technology, DOI 10.6028/nist.sp.800-208, October 2020,
+              <https://doi.org/10.6028/nist.sp.800-208>.
 
    [NIST-SP-800-56C]
               Barker, E., Chen, L., and R. Davis, "Recommendation for
