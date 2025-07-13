@@ -10,18 +10,18 @@
        This document provides guidance on migration to post-quantum cryptography
 (PQC) in internet protocols. It outlines the challenges and considerations that
 protocol designers and implementers should take into account when transitioning
-from classical cryptographic algorithms to PQC algorithms, which are designed
+from traditional cryptographic algorithms to PQC algorithms, which are designed
 to be secure against quantum computer attacks. 
        It is intended for cryptographic protocol designers within the IETF community,
 as well as technology developers and implementers responsible for deploying PQC
 standards. 
     " name="description">
-<meta content="xml2rfc 3.28.1" name="generator">
+<meta content="xml2rfc 3.29.0" name="generator">
 <meta content="post-quantum" name="keyword">
 <meta content="draft-kwiatkowski-pquip-pqc-migration-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.28.1
-    Python 3.12.10
+  xml2rfc 3.29.0
+    Python 3.12.11
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
@@ -30,7 +30,7 @@ standards.
     platformdirs 4.3.8
     pycountry 24.6.1
     PyYAML 6.0.2
-    requests 2.32.3
+    requests 2.32.4
     setuptools 80.9.0
     wcwidth 0.2.13
 -->
@@ -1051,11 +1051,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">PQUIP-MIGRATION</td>
-<td class="right">June 2025</td>
+<td class="right">July 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Kwiatkowski</td>
-<td class="center">Expires 13 December 2025</td>
+<td class="center">Expires 14 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-kwiatkowski-pquip-pqc-migration-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-06-11" class="published">11 June 2025</time>
+<time datetime="2025-07-13" class="published">13 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-12-13">13 December 2025</time></dd>
+<dd class="expires"><time datetime="2026-01-14">14 January 2026</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1088,7 +1088,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-abstract-1">This document provides guidance on migration to post-quantum cryptography
 (PQC) in internet protocols. It outlines the challenges and considerations that
 protocol designers and implementers should take into account when transitioning
-from classical cryptographic algorithms to PQC algorithms, which are designed
+from traditional cryptographic algorithms to PQC algorithms, which are designed
 to be secure against quantum computer attacks.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">It is intended for cryptographic protocol designers within the IETF community,
 as well as technology developers and implementers responsible for deploying PQC
@@ -1126,7 +1126,7 @@ standards.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 December 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 14 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1173,10 +1173,10 @@ standards.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-fips" class="internal xref">FIPS</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-infrastructure-costs" class="internal xref">Infrastructure costs</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-infrastructure-costs" class="internal xref">Infrastructure costs</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-fips" class="internal xref">FIPS</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-anti-patterns" class="internal xref">Anti-patterns</a></p>
@@ -1260,11 +1260,17 @@ threat. Adversaries may collect and store sensitive data encrypted with keys est
 using quantum-vulnerable methods today, with the intention of decrypting it later once
 CRQCs are available. This threat specifically impacts the confidentiality of communications,
 which is protected by keys derived during the key exchange process.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">Hybrid key encapsulation mechanisms (KEMs) are widely recommended because resilience that
-they offer: even if one of the underlying algorithms is broken (e.g., the classical
+<p id="section-3-3">PQ/T hybrid KEMs are widely recommended because resilience that
+they offer: even if one of the underlying algorithms is broken (e.g., the traditional
 or post-quantum scheme), the confidentiality of the session remains protected as long
 as the other holds. This property is essential in practice, since encrypted data
-captured today could be decrypted in the future if a single algorithm fails.<a href="#section-3-3" class="pilcrow">¶</a></p>
+captured today could be decrypted in the future if a single algorithm fails. Migrating
+from PQ/T hybrid to post-quantum KEMs has lower cost comparing to digital signatures, as in
+most cases KEMs are ephemeral and used only during session setup, without long-term
+identity ties. In contrast, signatures involve persistent keys, certificates, and complex
+trust infrastructure, making their transition more disruptive.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-4">The expectation is that importance of hybrid KEMs will diminish in time as confidence in
+post-quantum algorithms grows.<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="digital-signatures">
@@ -1272,155 +1278,93 @@ captured today could be decrypted in the future if a single algorithm fails.<a h
       <h2 id="name-digital-signatures">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-digital-signatures" class="section-name selfRef">Digital signatures</a>
       </h2>
-<p id="section-4-1">Digital signatures remain a vital component of cryptographic protocols, ensuring
-authenticity, integrity, and non-repudiation. As such, post-quantum digital signature
-schemes are necessary in a future-proof internet infrastructure. However, the urgency
-to deploy them is relatively lower compared to key encapsulation mechanisms (KEMs).<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">In practice, most public keys used for signatures are either short-lived or revocable.
-This allows systems to respond to a break by revoking or rotating keys, thus limiting
-the impact of a broken signature scheme. Additionally, the compromise of a signature
-scheme is expected to be a publicly known event, allowing protocols and
-infrastructure to adapt promptly. Therefore, while post-quantum signature algorithms
-are essential for long-term security, their deployment can follow a more measured
-timeline.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-1">Digital signatures remain a vital component of cryptographic protocols, ensuring authenticity, integrity, and non-repudiation. As such, post-quantum digital signature schemes are necessary in a future-proof internet infrastructure. However, the urgency to deploy them is relatively lower compared to key encapsulation mechanisms (KEMs).<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">Unlike key exchange, authentication cannot be broken retrospectively, meaning quantum-safe signatures are only needed once cryptanalytically relevant quantum computers (CRCQs) become available. As a result, the migration to post-quantum digital signatures is less time-sensitive than for KEMs, allowing for a more deliberate and carefully planned transition. Since post-quantum signature schemes often involve larger keys and signatures, greater computational overhead, and increased implementation complexity, their deployment may incur higher costs - reinforcing the importance of keeping the migration as simple and efficient as possible.<a href="#section-4-2" class="pilcrow">¶</a></p>
 <p id="section-4-3">TODO: migration strategies, hybrid signatures vs dual signatures, etc.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <div id="hybrid-digital-signatures">
 <section id="section-4.1">
         <h3 id="name-hybrid-digital-signatures">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-hybrid-digital-signatures" class="section-name selfRef">Hybrid digital signatures</a>
         </h3>
-<p id="section-4.1-1">Hybrid digital signatures combine classical and post-quantum signature schemes to
-provide resilience against future quantum attacks. However, their practical benefits
-are limited, and they introduce significant complexity and potential security pitfalls.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1-2">Although hybrid digital signatures can offer resilience by combining classical and
-post-quantum schemes, they introduce significant implementation complexity and
-potential pitfalls. For instance, key reuse and domain separation issues can lead
-to downgrade attacks if not carefully managed. The added size and verification
-costs also strain constrained environments.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.1-3">Hybrid digital signatures, provide limited real-world benefit and can introduce
-security pitfalls:
-* If one of the schemes fails, forged signatures are only exploitable while the
-  associated public key remains trusted.
-* Most systems are designed to revoke or rotate keys upon compromise, rendering
-  long-term hybrid signature protection less relevant.
-* Risks such as key reuse (e.g., using the same key for hybrid and non-hybrid modes)
-  require careful domain separation, which can be error-prone.
-* The combinatorial explosion of hybrid combinations increases implementation
-  and interoperability complexity.
-Protocols should instead focus on algorithm agility, embedding algorithm identifiers
-in keys, and enabling fast key rollover. Protocol designers are encouraged to prepare
-for signature migration, but widespread deployment can be aligned with broader
-infrastructure readiness and the availability of standardized and efficient PQC
-signature schemes.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1-1">Hybrid digital signatures, which combine traditional and post-quantum algorithms, aim to provide resilience against future quantum threats by ensuring that if either algorithm remains secure, the signature remains valid. This dual-layer approach offers protection in the face of current uncertainty around newly standardized post-quantum schemes and implementations of them. However, hybrid signatures introduce considerable implementation and operational complexity:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-2.1">
+            <p id="section-4.1-2.1.1">The number of possible hybrid combinations leads to interoperability challenges and increased implementation burden.<a href="#section-4.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.2">
+            <p id="section-4.1-2.2.1">If one scheme is compromised, forgery is only a concern while the corresponding public key remains trusted—most systems already revoke or rotate compromised keys.<a href="#section-4.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.3">
+            <p id="section-4.1-2.3.1">Long-term protection through hybrids may be limited in practice due to standard key management practices.<a href="#section-4.1-2.3.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-4.1-3">Instead of relying solely on hybrids, protocols should prioritize cryptographic agility-embedding algorithm identifiers in keys and supporting efficient key rollover. While signature migration should be planned proactively, broad deployment of PQC signature schemes can be aligned with infrastructure readiness and the availability of well-vetted, efficient standards.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-</section>
-</div>
-<div id="fips">
-<section id="section-5">
-      <h2 id="name-fips">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-fips" class="section-name selfRef">FIPS</a>
-      </h2>
-<p id="section-5-1">Current FIPS 140-3 validation poses a challenge for rapid adoption of PQC. Many
-post-quantum algorithms are not yet approved within FIPS-validated modules, making
-hybrid deployments difficult in regulated environments.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">While the sources discuss the FIPS standards for the pure PQC algorithms used within
-hybrid constructions, they do not explicitly state that hybrid signature schemes
-or formats themselves are approved by CMVP validation. The FIPS standards (204, 205)
-define the individual signature algorithms, which can then be used as components
-in a hybrid scheme.<a href="#section-5-2" class="pilcrow">¶</a></p>
-<p id="section-5-3">Migration plans must align with CMVP guidance and anticipate validation
-pathways for post-quantum schemes.<a href="#section-5-3" class="pilcrow">¶</a></p>
-<p id="section-5-4">TODO: Mention SP800-56C and lack of standardization for hybrid signatures.<a href="#section-5-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="infrastructure-costs">
-<section id="section-6">
+<section id="section-5">
       <h2 id="name-infrastructure-costs">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-infrastructure-costs" class="section-name selfRef">Infrastructure costs</a>
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-infrastructure-costs" class="section-name selfRef">Infrastructure costs</a>
       </h2>
-<p id="section-6-1">Migrating to post-quantum cryptography (PQC) necessitates potentially significant
+<p id="section-5-1">Migrating to post-quantum cryptography (PQC) necessitates potentially significant
 updates to an organization's cryptographic infrastructure. The process requires
 careful planning and resource allocation to address various financial and operational
-costs.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">A key aspect of PQC migration involves identifying and budgeting for discovery
+costs.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">A key aspect of PQC migration involves identifying and budgeting for discovery
 initiatives, which aim to understand the organization's cryptographic assets and
 their PQC relevancy. This includes building a comprehensive inventory of
 cryptographic use and associated assets. The process of inventorying may require
-specific tools and methods, which also factor into the initial costs.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3">A major cost driver is determining whether PQC updates can be implemented through
+specific tools and methods, which also factor into the initial costs.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">A major cost driver is determining whether PQC updates can be implemented through
 software updates or will necessitate more expensive hardware replacements or
 upgrades. Engaging with system vendors is crucial to confirm migration needs,
 inquire about the cost of new PQC solutions, and understand the anticipated
 business impact of implementation efforts. For custom or niche systems, organizations
-may need to budget for the cost of developing internal PQC-compliant solutions.<a href="#section-6-3" class="pilcrow">¶</a></p>
-<p id="section-6-4">Specific infrastructure components and systems require updates, leading to
-associated costs:<a href="#section-6-4" class="pilcrow">¶</a></p>
+may need to budget for the cost of developing internal PQC-compliant solutions.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-4">Specific infrastructure components and systems require updates, leading to
+associated costs:<a href="#section-5-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6-5.1">
-          <p id="section-6-5.1.1">Network Protocols and Systems: Protocols like TLS, SSH, and QUIC, widely used
-in telecom networks and general IT infrastructure, need to integrate PQC for
-key exchange and authentication. While the computational performance impact
-of PQC Key Encapsulation Mechanisms (KEMs) like ML-KEM on handshake speed is
-often minimal or even faster compared to traditional methods, the size of PQC
-artifacts is much larger, which can lead to increased bandwidth usage and
-potential delays.<a href="#section-6-5.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5-5.1">
+          <p id="section-5-5.1.1">Network Protocols and Systems: Protocols like TLS, SSH, and QUIC, widely used in telecom networks and general IT infrastructure, need to integrate PQC for key exchange and authentication. While the computational performance impact of PQC Key Encapsulation Mechanisms (KEMs) like ML-KEM on handshake speed is often minimal or even faster compared to traditional methods, the size of PQC artifacts is much larger, which can lead to increased bandwidth usage, increased number of extra round trips and potential delays. While tweaking network parameters can alleviate some issues, it involves trade-offs, which relate to operational network costs.<a href="#section-5-5.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-6-5.2">
-          <p id="section-6-5.2.1">Certificate Size Impact: Larger certificate sizes, especially for PQC
-signature algorithms like ML-DSA, can impact network performance. This is
-due to interaction with network parameters like the amplification window,
-congestion control, and initial round-trip time estimates, potentially
-causing extra round trips and delays. While tweaking these parameters can
-alleviate some issues, it involves trade-offs, which relate to operational
-network costs (bandwidth, latency).<a href="#section-6-5.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-5-5.2">
+          <p id="section-5-5.2.1">Message Processing: Post-quantum signature algorithms often handle messages differently from the traditional "digest-then-sign" model, typically processing the entire message internally. This can degrade performance for large messages, particularly when streaming data to constrained signing environments such as HSMs via interfaces like PKCS#11. While pre-hashing messages can mitigate performance issues, it introduces additional complexity—requiring applications to adapt to algorithms that support streaming processing to reduce memory usage. Managing these varied processing approaches across systems increases both development and operational overhead.<a href="#section-5-5.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-6-5.3">
-          <p id="section-6-5.3.1">Message Processing: The way PQC signature algorithms process messages
-(often processing the whole message internally) differs from the traditional
-"digest-then-sign" approach. For very large messages, this can impact
-performance, especially when streaming data to constrained signing entities
-like HSMs via APIs like PKCS#11 . While digesting before signing can improve
-performance for large messages , it reintroduces collision risk and adds
-complexity. Implementing and managing these different processing methods
-across various systems can add to development and operational costs.<a href="#section-6-5.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-6-5.4">
-          <p id="section-6-5.4.1">Public Key Infrastructure (PKI): The PKI supporting systems needs to be
+        <li class="normal" id="section-5-5.3">
+          <p id="section-5-5.3.1">Public Key Infrastructure (PKI): The PKI supporting systems needs to be
 updated to handle PQC keys and certificates. This involves changes to
 Certificate Authorities (CAs), certificate formats (e.g., X.509), and related
 processes. Various hybrid certificate formats are being explored to facilitate
 the transition, each with different complexity and potential overhead. The
 deployment of new Trust Anchors can also be a time-consuming and costly
-process.<a href="#section-6-5.4.1" class="pilcrow">¶</a></p>
+process.<a href="#section-5-5.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-6-5.5">
-          <p id="section-6-5.5.1">Constrained Devices: Devices with long operational lifetimes in
-environments like industrial control systems, vehicles, satellites, smart
-meters, and smart cards present unique challenges and potential costs.
-Upgrading cryptographic capabilities on such devices may be difficult or even
-impossible due to resource constraints, physical location, or immutability
-features, potentially requiring expensive field updates or device replacement.<a href="#section-6-5.5.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-5-5.4">
+          <p id="section-5-5.4.1">Constrained Devices: Devices with long operational lifetimes in environments like industrial control systems, vehicles, satellites, smart meters, and smart cards present unique challenges and potential costs. Upgrading cryptographic capabilities on such devices may be difficult or even impossible due to resource constraints, physical location, or immutability features, potentially requiring expensive field updates or device replacement. For guidance on integrating Post-Quantum Cryptography (PQC) into such constrained environments, see <span>[<a href="#I-D.ietf-pquip-pqc-hsm-constrained" class="cite xref">I-D.ietf-pquip-pqc-hsm-constrained</a>]</span>.<a href="#section-5-5.4.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-6-5.6">
-          <p id="section-6-5.6.1">Hybrid Implementations: While motivated by security concerns during the
-transition period, hybrid signature strategies can introduce increased complexity
-and potential overhead in terms of data size. The use of hybrids also implies a
-potential future migration when one or both constituent algorithms become obsolete,
-deferring some costs rather than eliminating them. The combinatorial explosion of
-combining various classical and PQC schemes adds complexity to implementation
-and testing.<a href="#section-6-5.6.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-5-5.5">
+          <p id="section-5-5.5.1">Hybrid Implementations: While motivated by security concerns during the transition period, hybrid scheme strategies can introduce increased complexity and potential overhead in terms of data size. The combinatorial explosion of combining various traditional and PQC schemes adds complexity to implementation and testing.<a href="#section-5-5.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-5.6">
+          <p id="section-5-5.6.1">Continuous monitoring and evaluation are also necessary to track migration progress and adapt to evolving quantum capabilities, requiring ongoing resource commitment and increasing hardware cost.<a href="#section-5-5.6.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-6-6">Beyond direct hardware and software costs, continuous monitoring and evaluation
-are also necessary to track migration progress and adapt to evolving quantum
-capabilities, requiring ongoing resource commitment.<a href="#section-6-6" class="pilcrow">¶</a></p>
-<p id="section-6-7">TODO: How to monitor?<a href="#section-6-7" class="pilcrow">¶</a></p>
-<p id="section-6-8">Adopting principles like cryptographic agility is highlighted as a way to manage costs
-in the long term by designing systems that can undergo multiple cryptographic transitions
-without major architectural changes, thereby reducing the cost of future updates. However,
-achieving true agility requires effort in standardization and implementation to support
-simultaneous use or dynamic negotiation of algorithms.<a href="#section-6-8" class="pilcrow">¶</a></p>
+<p id="section-5-6">In addition to complexity, PQ/T hybrid schemes can incur higher migration costs. Organizations adopting hybrids will eventually need to migrate again to pure post-quantum schemes once confidence in these algorithms solidifies, deferring some costs rather than eliminating them. This means maintaining dual algorithm infrastructure (e.g., certificate chains, key management, validation logic) during the hybrid phase, followed by another transition with its own cost, testing, and operational risks. For many deployments-especially constrained or high-assurance environments—this two-step migration may be more burdensome than a single, well-timed switch to a vetted post-quantum alternative.<a href="#section-5-6" class="pilcrow">¶</a></p>
+<p id="section-5-7">Adopting principles like cryptographic agility is highlighted as a way to manage costs in the long term by designing systems that can undergo multiple cryptographic transitions without major architectural changes, thereby reducing the cost of future updates. However, achieving true agility requires effort in standardization and implementation to support simultaneous use or dynamic negotiation of algorithms.<a href="#section-5-7" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="fips">
+<section id="section-6">
+      <h2 id="name-fips">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-fips" class="section-name selfRef">FIPS</a>
+      </h2>
+<p id="section-6-1">Protocol designers are encouraged to prioritize solutions that maintain compliance with industry-trusted standards, like FIPS, to ensure alignment with regulatory requirements.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">One feature that PQ/T hybrid implementations provide is defense in deep. That is needed while implementations of new post-quantum schemes is maturing, the fact of having another implementation as a backup provides a guarantee that even if post-quantum implementation fails, the other one is solid.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">Migration plans must align with CMVP guidance and anticipate validation pathways for post-quantum schemes.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">FIPS-compliance of shared secret concatenation. <span>[<a href="#NIST-SP-800-56C" class="cite xref">NIST-SP-800-56C</a>]</span> or <span>[<a href="#NIST-SP-800-135" class="cite xref">NIST-SP-800-135</a>]</span> give NIST recommendations for key derivation methods in key exchange protocols. Some hybrid combinations may combine the shared secret from a NIST-approved algorithm with a shared secret from a non-approved algorithm (e.g., post-quantum). <span>[<a href="#NIST-SP-800-56C" class="cite xref">NIST-SP-800-56C</a>]</span> lists simple concatenation as an approved method for generation of a hybrid shared secret in which one of the constituent shared secret is from an approved method.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-5">Hybrid signature schemes or formats themselves are approved by CMVP validation. The FIPS standards (204, 205, 206 and SP800-208) define the individual signature algorithms, which can then be used as components in a hybrid scheme.<a href="#section-6-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="anti-patterns">
@@ -1499,8 +1443,12 @@ appear in all capitals, as shown here.<a href="#section-8-1" class="pilcrow">¶<
 <span class="refAuthor">Langley, A.</span>, <span class="refAuthor">Hamburg, M.</span>, and <span class="refAuthor">S. Turner</span>, <span class="refTitle">"Elliptic Curves for Security"</span>, <span class="seriesInfo">RFC 7748</span>, <span class="seriesInfo">DOI 10.17487/RFC7748</span>, <time datetime="2016-01" class="refDate">January 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7748">https://www.rfc-editor.org/rfc/rfc7748</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="rfc9794">[rfc9794]</dt>
+      <dd>
+<span class="refAuthor">Driscoll, F.</span>, <span class="refAuthor">Parsons, M.</span>, and <span class="refAuthor">B. Hale</span>, <span class="refTitle">"Terminology for Post-Quantum Traditional Hybrid Schemes"</span>, <span class="seriesInfo">RFC 9794</span>, <span class="seriesInfo">DOI 10.17487/RFC9794</span>, <time datetime="2025-06" class="refDate">June 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9794">https://www.rfc-editor.org/rfc/rfc9794</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1511,9 +1459,21 @@ appear in all capitals, as shown here.<a href="#section-8-1" class="pilcrow">¶<
 <a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="I-D.ietf-pquip-pqc-hsm-constrained">[I-D.ietf-pquip-pqc-hsm-constrained]</dt>
+        <dd>
+<span class="refAuthor">Reddy.K, T.</span>, <span class="refAuthor">Wing, D.</span>, <span class="refAuthor">S, B.</span>, and <span class="refAuthor">K. Kwiatkowski</span>, <span class="refTitle">"Adapting Constrained Devices for Post-Quantum Cryptography"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-pquip-pqc-hsm-constrained-01</span>, <time datetime="2025-07-04" class="refDate">4 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-pquip-pqc-hsm-constrained-01">https://datatracker.ietf.org/doc/html/draft-ietf-pquip-pqc-hsm-constrained-01</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="NIST-SP-800-135">[NIST-SP-800-135]</dt>
+        <dd>
+<span class="refAuthor">Dang, Q.</span>, <span class="refTitle">"Recommendation for existing application-specific key derivation functions"</span>, <span class="refContent">National Institute of Standards and Technology</span>, <span class="seriesInfo">DOI 10.6028/nist.sp.800-135r1</span>, <time datetime="2011" class="refDate">2011</time>, <span>&lt;<a href="https://doi.org/10.6028/nist.sp.800-135r1">https://doi.org/10.6028/nist.sp.800-135r1</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="NIST-SP-800-56C">[NIST-SP-800-56C]</dt>
+        <dd>
+<span class="refAuthor">Barker, E.</span>, <span class="refAuthor">Chen, L.</span>, and <span class="refAuthor">R. Davis</span>, <span class="refTitle">"Recommendation for Key-Derivation Methods in Key-Establishment Schemes"</span>, <span class="refContent">National Institute of Standards and Technology</span>, <span class="seriesInfo">DOI 10.6028/nist.sp.800-56cr2</span>, <time datetime="2020-08" class="refDate">August 2020</time>, <span>&lt;<a href="https://doi.org/10.6028/nist.sp.800-56cr2">https://doi.org/10.6028/nist.sp.800-56cr2</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="tlsiana">[tlsiana]</dt>
       <dd>
-<span class="refAuthor">Salowey, J. A.</span> and <span class="refAuthor">S. Turner</span>, <span class="refTitle">"IANA Registry Updates for TLS and DTLS"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-tls-rfc8447bis-13</span>, <time datetime="2025-05-29" class="refDate">29 May 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-rfc8447bis-13">https://datatracker.ietf.org/doc/html/draft-ietf-tls-rfc8447bis-13</a>&gt;</span>. </dd>
+<span class="refAuthor">Salowey, J. A.</span> and <span class="refAuthor">S. Turner</span>, <span class="refTitle">"IANA Registry Updates for TLS and DTLS"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-tls-rfc8447bis-14</span>, <time datetime="2025-06-16" class="refDate">16 June 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-rfc8447bis-14">https://datatracker.ietf.org/doc/html/draft-ietf-tls-rfc8447bis-14</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
