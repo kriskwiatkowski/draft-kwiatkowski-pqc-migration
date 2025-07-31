@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-29T02:01:11.478567+00:00",
+  "timestamp": "2025-07-31T01:50:39.089993+00:00",
   "repo": "kriskwiatkowski/draft-kwiatkowski-pqc-migration",
   "labels": [
     {
@@ -49,6 +49,87 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOO3m8fs7DCtGN",
+      "title": "Review, comment and link to with draft-li-pquip",
+      "url": "https://github.com/kriskwiatkowski/draft-kwiatkowski-pqc-migration/issues/1",
+      "state": "OPEN",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Both of this two I-Ds is related to the migration and transition:\n\n* https://datatracker.ietf.org/doc/draft-li-pquip-escape-message/01/\n* https://datatracker.ietf.org/doc/draft-li-pquip-teleco-pqc-migration/\n\nIn particular, I would like to emphasize the escape message. You mentioned and discussed it in Chapter 5, \"Infrastructure Costs.\" I believe that a flag or trigger message describe in this I-D is absolutely a very useful feature. If you have time, you can read more in my I-Ds, and welcome comments.\n\n",
+      "createdAt": "2025-07-29T06:18:41Z",
+      "updatedAt": "2025-07-29T06:18:41Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOO3m8fs7DDoO2",
+      "title": "Explain connection between KEMs and how they are used in protocols",
+      "url": "https://github.com/kriskwiatkowski/draft-kwiatkowski-pqc-migration/issues/2",
+      "state": "OPEN",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "> The current text, however, focuses on KEMs (which are not protocols but algorithms). The connection between KEMs and how they are used in protocols (or how signatures are used in protocols for that matter) would benefit from more explanation. This is particularly useful and some developers have misunderstood the distinction and are trying to use KEMs \u2018in the raw\u2019 without all the careful constructs that protocols build around them. This leaves such implementations open to various attacks. Explaining this context as one of the essential consideration in your draft could certainly help prevent future attacks.",
+      "createdAt": "2025-07-29T07:37:28Z",
+      "updatedAt": "2025-07-29T07:37:40Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOO3m8fs7DDpLa",
+      "title": "Remove text about PQ digital signatures",
+      "url": "https://github.com/kriskwiatkowski/draft-kwiatkowski-pqc-migration/issues/3",
+      "state": "OPEN",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "> \u201c\u2026the migration to post-quantum digital signatures is less time-sensitive than for KEMs, allowing for a more deliberate and carefully planned transition\u2026\u201d: This was true in the early days of PQ work, and HNDL attacks helped to frame the problem of PQ need; but of course things change. I recommend that this be removed.",
+      "createdAt": "2025-07-29T07:38:43Z",
+      "updatedAt": "2025-07-29T07:38:43Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOO3m8fs7DEGFL",
+      "title": "Scheme compromise and key compromise are mis-matched",
+      "url": "https://github.com/kriskwiatkowski/draft-kwiatkowski-pqc-migration/issues/4",
+      "state": "OPEN",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "> \u201c\u2026if one scheme is compromised, forgery is only a concern while the corresponding public key remains trusted\u2014most systems already revoke or rotate compromised keys\u201d: There is a mis-match in this sentence between scheme compromise and key compromise. If a scheme is compromised, rotating a key does nothing to fix the vulnerability.",
+      "createdAt": "2025-07-29T08:19:50Z",
+      "updatedAt": "2025-07-29T08:19:50Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOO3m8fs7DEGfL",
+      "title": "Define crypto-agility",
+      "url": "https://github.com/kriskwiatkowski/draft-kwiatkowski-pqc-migration/issues/5",
+      "state": "OPEN",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "> \u201ccryptographic agility\u201d: I recommend including a definition at first use or early in the draft.",
+      "createdAt": "2025-07-29T08:20:18Z",
+      "updatedAt": "2025-07-29T08:20:18Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
   "pulls": []
 }
