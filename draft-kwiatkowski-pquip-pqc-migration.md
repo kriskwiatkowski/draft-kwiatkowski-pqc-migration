@@ -88,7 +88,7 @@ PQ/T hybrid digital signatures, which combine traditional and post-quantum algor
 
 - Long-term protection through hybrids may be limited in practice due to standard key management practices.
 
-Instead of relying solely on hybrids, protocols should prioritize cryptographic agility-embedding algorithm identifiers in keys and supporting efficient key rollover. While signature migration should be planned proactively, broad deployment of PQC signature schemes can be aligned with infrastructure readiness and the availability of well-vetted, efficient standards.
+Instead of relying solely on hybrids, protocols should prioritize cryptographic algorithm agility, as described in {{Section 1 of !RFC7696}}, for example by embedding algorithm identifiers within keys. While signature migration should be planned proactively, broad deployment of PQC signature schemes can be aligned with infrastructure readiness and the availability of well-vetted, efficient standards.
 
 # Infrastructure costs
 
@@ -114,7 +114,7 @@ Specific infrastructure components and systems require updates, leading to assoc
 
 In addition to complexity, PQ/T hybrid schemes can incur higher migration costs. Organizations adopting hybrids will eventually need to migrate again to pure post-quantum schemes once confidence in these algorithms solidifies, deferring some costs rather than eliminating them. This means maintaining dual algorithm infrastructure (e.g., certificate chains, key management, validation logic) during the hybrid phase, followed by another transition with its own cost, testing, and operational risks. For many deployments-especially constrained or high-assurance environments—this two-step migration may be more burdensome than a single, well-timed switch to a vetted post-quantum alternative.
 
-Adopting principles like cryptographic agility is highlighted as a way to manage costs in the long term by designing systems that can undergo multiple cryptographic transitions without major architectural changes, thereby reducing the cost of future updates. However, achieving true agility requires effort in standardization and implementation to support simultaneous use or dynamic negotiation of algorithms.
+Adopting principles like cryptographic algorithm agility is highlighted as a way to manage costs in the long term by designing systems that can undergo multiple cryptographic transitions without major architectural changes, thereby reducing the cost of future updates. However, achieving true agility requires effort in standardization and implementation to support simultaneous use or dynamic negotiation of algorithms.
 
 # Standards Compliance
 
