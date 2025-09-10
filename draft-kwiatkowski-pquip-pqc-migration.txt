@@ -3,9 +3,9 @@
 
 
 Post-Quantum Use In Protocols                             K. Kwiatkowski
-Internet-Draft                                              20 July 2025
+Internet-Draft                                         10 September 2025
 Intended status: Informational                                          
-Expires: 21 January 2026
+Expires: 14 March 2026
 
 
           Guidance for migration to Post-Quantum Cryptography
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 January 2026.
+   This Internet-Draft will expire on 14 March 2026.
 
 Copyright Notice
 
@@ -200,11 +200,12 @@ Table of Contents
       due to standard key management practices.
 
    Instead of relying solely on hybrids, protocols should prioritize
-   cryptographic agility-embedding algorithm identifiers in keys and
-   supporting efficient key rollover.  While signature migration should
-   be planned proactively, broad deployment of PQC signature schemes can
-   be aligned with infrastructure readiness and the availability of
-   well-vetted, efficient standards.
+   cryptographic algorithm agility, as described in Section 1 of
+   [RFC7696], for example by embedding algorithm identifiers within
+   keys.  While signature migration should be planned proactively, broad
+   deployment of PQC signature schemes can be aligned with
+   infrastructure readiness and the availability of well-vetted,
+   efficient standards.
 
 5.  Infrastructure costs
 
@@ -298,13 +299,13 @@ Table of Contents
    migration may be more burdensome than a single, well-timed switch to
    a vetted post-quantum alternative.
 
-   Adopting principles like cryptographic agility is highlighted as a
-   way to manage costs in the long term by designing systems that can
-   undergo multiple cryptographic transitions without major
-   architectural changes, thereby reducing the cost of future updates.
-   However, achieving true agility requires effort in standardization
-   and implementation to support simultaneous use or dynamic negotiation
-   of algorithms.
+   Adopting principles like cryptographic algorithm agility is
+   highlighted as a way to manage costs in the long term by designing
+   systems that can undergo multiple cryptographic transitions without
+   major architectural changes, thereby reducing the cost of future
+   updates.  However, achieving true agility requires effort in
+   standardization and implementation to support simultaneous use or
+   dynamic negotiation of algorithms.
 
 6.  Standards Compliance
 
@@ -387,6 +388,11 @@ Table of Contents
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
 
+   [RFC7696]  Housley, R., "Guidelines for Cryptographic Algorithm
+              Agility and Selecting Mandatory-to-Implement Algorithms",
+              BCP 201, RFC 7696, DOI 10.17487/RFC7696, November 2015,
+              <https://www.rfc-editor.org/rfc/rfc7696>.
+
    [rfc7748]  Langley, A., Hamburg, M., and S. Turner, "Elliptic Curves
               for Security", RFC 7748, DOI 10.17487/RFC7748, January
               2016, <https://www.rfc-editor.org/rfc/rfc7748>.
@@ -450,9 +456,9 @@ Table of Contents
 
    [tlsiana]  Salowey, J. A. and S. Turner, "IANA Registry Updates for
               TLS and DTLS", Work in Progress, Internet-Draft, draft-
-              ietf-tls-rfc8447bis-14, 16 June 2025,
+              ietf-tls-rfc8447bis-15, 21 July 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tls-
-              rfc8447bis-14>.
+              rfc8447bis-15>.
 
 Author's Address
 
