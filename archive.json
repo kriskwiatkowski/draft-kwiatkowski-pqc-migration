@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-09T01:25:27.947240+00:00",
+  "timestamp": "2025-09-11T01:24:47.513563+00:00",
   "repo": "kriskwiatkowski/draft-kwiatkowski-pqc-migration",
   "labels": [
     {
@@ -119,15 +119,15 @@
       "id": "I_kwDOO3m8fs7DEGfL",
       "title": "Define crypto-agility",
       "url": "https://github.com/kriskwiatkowski/draft-kwiatkowski-pqc-migration/issues/5",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "kriskwiatkowski",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "> \u201ccryptographic agility\u201d: I recommend including a definition at first use or early in the draft.",
       "createdAt": "2025-07-29T08:20:18Z",
-      "updatedAt": "2025-07-29T08:20:18Z",
-      "closedAt": null,
+      "updatedAt": "2025-09-10T22:12:17Z",
+      "closedAt": "2025-09-10T22:12:17Z",
       "comments": []
     },
     {
