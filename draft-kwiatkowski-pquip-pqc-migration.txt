@@ -298,6 +298,13 @@ Table of Contents
       requiring ongoing resource commitment and increasing hardware
       cost.
 
+   *  Training and Awareness: Ensuring that staff are knowledgeable
+      about PQC concepts, like KPIs provided by PQC implementations and
+      impact on performance, familiar with needs or concepts behind PQ/T
+      hybrid schemes are essential.  This may involve training programs,
+      workshops, or hiring specialized personnel, all of which
+      contribute to the overall cost.
+
    In addition to complexity, PQ/T hybrid schemes can incur higher
    migration costs.  Organizations adopting hybrids will eventually need
    to migrate again to pure post-quantum schemes once confidence in
