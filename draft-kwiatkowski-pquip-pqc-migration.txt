@@ -191,28 +191,59 @@ Table of Contents
 
 4.1.  PQ/T hybrid digital signatures
 
-   PQ/T hybrid digital signatures, which combine traditional and post-
-   quantum algorithms, aim to provide resilience against future quantum
-   threats by ensuring that if either algorithm remains secure, the
-   signature remains valid.  This dual-layer approach offers protection
-   in the face of current uncertainty around newly standardized post-
-   quantum schemes and implementations of them.  However, hybrid
-   signatures introduce considerable implementation and operational
-   complexity:
+   PQ/T hybrid digital signatures combine conventional and post-quantum
+   algorithms to ensure long-term security against emerging quantum
+   threats.  This dual-layer approach mitigates the uncertainty
+   surrounding newly standardized post-quantum schemes and their
+   implementations — the traditional component provides proven, well-
+   understood security, while the post-quantum component adds protection
+   against future quantum attacks.  However, this defense-in-depth
+   strategy also introduces additional implementation and operational
+   complexity, which must be carefully managed.  Key considerations
+   include:
 
-   *  The number of possible hybrid combinations leads to
-      interoperability challenges and increased implementation burden.
+   *  Hybrid signatures are larger in size and typically demand more
+      computational effort, both of which can affect bandwidth and
+      overall system performance.  The two primary concerns are
+      increased latency and higher resource consumption.  The first is
+      particularly critical for low-latency applications, while the
+      second poses challenges for constrained environments, where
+      computation time and memory usage are already limited and further
+      stressed by the inherent complexity of post-quantum signature
+      schemes.
 
-   *  If one scheme is compromised, forgery is only a concern while the
-      corresponding public key remains trusted—most systems already
-      revoke or rotate compromised keys.
+   *  The ecosystem of supported PQ/T hybrid schemes is still evolving,
+      and implementations and standards are continuing to mature.
+      Protocols must be adapted to support hybrid signatures, which may
+      require modifications to existing standards such as X.509 and
+      their deployments (e.g., PKI).
 
-   *  Long-term protection through hybrids may be limited in practice
-      due to standard key management practices.
+   *  Systems supporting multiple algorithms also increase overall
+      complexity, the potential for implementation errors, and the cost
+      of certification (e.g., FIPS).
+
+   *  The large number of potential hybrid combinations introduces
+      interoperability challenges and increases implementation burden.
+
+   *  The choice of hybrid combinations should be carefully considered
+      to balance security, performance, and complexity.
+
+   *  In case one of the schemes is compromised, the signature doesn't
+      achieve strong unforgeability under chosen message attack - SUF-
+      CMA (definition of SUF-CMA can be found in the Section 10.1.1 of
+      [I-D.ietf-pquip-pqc-engineers]).  This is a because, an attacker
+      could forge a signature of the compromised scheme and exploit the
+      structure of the PQ?T hybrid signature to create a valid, but
+      different signature for the same message.  However, we note that
+      this limitation is generally acceptable in practice, as the
+      primary goal of hybrid signatures is to provide defense-in-depth
+      during the transition period to post-quantum cryptography (PQC).
+      Namely it assumes that authenticity is provided by one of the
+      signatures, but not necesairly both.
 
    Instead of relying solely on hybrids, protocols should prioritize
-   cryptographic algorithm agility, as described in Section 1 of
-   [RFC7696], for example by embedding algorithm identifiers within
+   cryptographic algorithm agility (as described in Section 1 of
+   [RFC7696]), for example by embedding algorithm identifiers within
    keys.  While signature migration should be planned proactively, broad
    deployment of PQC signature schemes can be aligned with
    infrastructure readiness and the availability of well-vetted,
@@ -261,10 +292,10 @@ Table of Contents
       can degrade performance for large messages, particularly when
       streaming data to constrained signing environments such as HSMs
       via interfaces like PKCS#11.  While pre-hashing messages can
-      mitigate performance issues, it introduces additional
-      complexity—requiring applications to adapt to algorithms that
-      support streaming processing to reduce memory usage.  Managing
-      these varied processing approaches across systems increases both
+      mitigate performance issues, it introduces additional complexity-
+      requiring applications to adapt to algorithms that support
+      streaming processing to reduce memory usage.  Managing these
+      varied processing approaches across systems increases both
       development and operational overhead.
 
    *  Public Key Infrastructure (PKI): The PKI supporting systems needs
@@ -314,7 +345,7 @@ Table of Contents
    infrastructure (e.g., certificate chains, key management, validation
    logic) during the hybrid phase, followed by another transition with
    its own cost, testing, and operational risks.  For many deployments-
-   especially constrained or high-assurance environments—this two-step
+   especially constrained or high-assurance environments-this two-step
    migration may be more burdensome than a single, well-timed switch to
    a vetted post-quantum alternative.
 
@@ -338,8 +369,8 @@ Table of Contents
    With the NIST standardization of post-quantum algorithms (e.g.,
    [NIST-FIPS-203], [NIST-FIPS-204], [NIST-FIPS-205] and
    [NIST-SP-800-208]), the certification pathway is becoming clearer and
-   more structured.  However, during the transitional period—while post-
-   quantum implementations mature—it may be beneficial to adopt PQC/T
+   more structured.  However, during the transitional period-while post-
+   quantum implementations mature-it may be beneficial to adopt PQC/T
    approaches.  These offer several advantages:
 
    *  They provide defense in depth by enabling fallback to a well-
