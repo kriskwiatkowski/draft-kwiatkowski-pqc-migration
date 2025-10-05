@@ -112,7 +112,7 @@ Specific infrastructure components and systems require updates, leading to assoc
 
 - Continuous monitoring and evaluation are also necessary to track migration progress and adapt to evolving quantum capabilities, requiring ongoing resource commitment and increasing hardware cost.
 
-- Training and Awareness: Ensuring that staff are knowledgeable about PQC concepts, like KPIs provided by PQC implementations and impact on performance, familiar with needs or concepts behind PQ/T hybrid schemes are essential. This may involve training programs, workshops, or hiring specialized personnel, all of which contribute to the overall cost.
+- Training and Awareness: Ensuring that staff are knowledgeable about PQC concepts, like KPIs provided by PQC implementations and impact on performance, familiar with tradeoffs of PQ/T hybrid schemes and their implications on migration process are essential. This may involve training programs, workshops, or hiring specialized personnel, all of which contribute to the overall cost.
 
 In addition to complexity, PQ/T hybrid schemes can incur higher migration costs. Organizations adopting hybrids will eventually need to migrate again to pure post-quantum schemes once confidence in these algorithms solidifies, deferring some costs rather than eliminating them. This means maintaining dual algorithm infrastructure (e.g., certificate chains, key management, validation logic) during the hybrid phase, followed by another transition with its own cost, testing, and operational risks. For many deployments-especially constrained or high-assurance environments—this two-step migration may be more burdensome than a single, well-timed switch to a vetted post-quantum alternative.
 
