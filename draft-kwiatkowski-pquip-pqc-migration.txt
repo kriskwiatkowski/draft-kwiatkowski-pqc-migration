@@ -102,18 +102,20 @@ Table of Contents
 
 2.  Awareness
 
-   Before embarking on the transition to post-quantum cryptography
-   (PQC), organizations must first evaluate whether to begin the
-   migration immediately or adopt a phased timeline.  This decision
-   depends on factors such as the duration required for migration, the
-   expected shelf-life of sensitive data, and the projected timeline for
-   quantum threats.  Data with long-term confidentiality requirements
-   may increase the urgency, as adversaries could collect encrypted
-   information today and decrypt it in the future using a
-   cryptographically relevant quantum computer (CRQC).  Even in the
-   absence of a direct harvest-now-decrypt-later threat, organizations
-   must still prepare to protect data integrity and authenticity against
-   future quantum-enabled attacks.
+   Before initiating the transition to post-quantum cryptography (PQC),
+   organizations should determine how to structure their migration
+   strategy.  In most cases, this involves starting migration activities
+   immediately while adopting a phased approach that prioritizes systems
+   based on risk and sensitivity.  The overall strategy depends on
+   factors such as the estimated duration of migration, the required
+   confidentiality period of sensitive data, and the projected timeline
+   for the emergence of cryptographically relevant quantum computers
+   (CRQCs).  Data with long-term confidentiality requirements may
+   increase the urgency, as adversaries could collect encrypted
+   information today and decrypt it in the future using a CRQC.  Even in
+   the absence of a direct harvest-now-decrypt-later threat,
+   organizations must still prepare to protect data integrity and
+   authenticity against future quantum-enabled attacks.
 
    To guide this process, organizations should clearly define their PQC
    migration objectives, starting with an assessment of their risk
@@ -140,20 +142,26 @@ Table of Contents
    threat specifically impacts the confidentiality of communications,
    which is protected by keys derived during the key exchange process.
 
-   PQ/T hybrid KEMs are widely recommended because resilience that they
-   offer: even if one of the underlying algorithms is broken (e.g., the
-   traditional or post-quantum scheme), the confidentiality of the
-   session remains protected as long as the other holds.  This property
-   is essential in practice, since encrypted data captured today could
-   be decrypted in the future if a single algorithm fails.  Migrating
-   from PQ/T hybrid to post-quantum KEMs has lower cost comparing to
-   digital signatures, as in most cases KEMs are ephemeral and used only
-   during session setup, without long-term identity ties.  In contrast,
-   signatures involve persistent keys, certificates, and complex trust
-   infrastructure, making their transition more disruptive.
+   PQ/T hybrid KEMs are widely recommended because of the resilience
+   that they offer: even if one of the underlying algorithms is broken
+   (e.g., the traditional or post-quantum scheme), the confidentiality
+   of the session remains protected as long as the other holds.  This
+   property is essential in practice, since encrypted data captured
+   today could be decrypted in the future if a single algorithm fails.
+   Migrating from PQ/T hybrid to post-quantum KEMs has lower cost
+   comparing to digital signatures, as in most cases KEMs are ephemeral
+   and used only during session setup, without long-term identity ties.
+   In contrast, signatures involve persistent keys, certificates, and
+   complex trust infrastructure, making their transition more
+   disruptive.
 
-   The expectation is that importance of PQ/T hybrid KEMs will diminish
-   in time as confidence in post-quantum algorithms grows.
+   The expectation is that the importance of PQ/T hybrid KEMs will
+   diminish over time as confidence in post-quantum algorithms grows.
+   Once this happens, Internet protocols are expected to transition
+   through another migration phase - from hybrid to pure post-quantum
+   schemes.  At that stage, protocols should support post-quantum
+   algorithms as their default configurations, with a clear and well-
+   defined migration path.
 
 4.  Digital signatures
 
@@ -188,6 +196,18 @@ Table of Contents
    testing, standardization, and gradual adoption taking into account
    the readiness of infrastructure, applications and costs of the
    transition.
+
+   Long-lived verifiers - such as IoT devices deployed in the field and
+   accepting software update - require protection against future quantum
+   threats due to their extended operational lifetimes.  As quantum
+   computing capabilities progress, these verifiers must migrate to
+   post-quantum cryptography (PQC) to preserve integrity and
+   authenticity over time.  For such use cases, hash-based signature
+   schemes provide a practical near-term solution, offering strong post-
+   quantum security and suitability for long-term validation scenarios.
+   Additional guidance on integrating PQC into constrained
+   environments—particularly relevant for long-lived verifiers—is
+   available in Section 6 of [I-D.ietf-pquip-pqc-hsm-constrained].
 
 4.1.  PQ/T hybrid digital signatures
 
