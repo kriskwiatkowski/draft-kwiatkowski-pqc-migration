@@ -3,9 +3,9 @@
 
 
 Post-Quantum Use In Protocols                             K. Kwiatkowski
-Internet-Draft                                         10 September 2025
+Internet-Draft                                            5 October 2025
 Intended status: Informational                                          
-Expires: 14 March 2026
+Expires: 8 April 2026
 
 
           Guidance for migration to Post-Quantum Cryptography
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 March 2026.
+   This Internet-Draft will expire on 8 April 2026.
 
 Copyright Notice
 
@@ -164,19 +164,30 @@ Table of Contents
    them is relatively lower compared to key encapsulation mechanisms
    (KEMs).
 
+   The main difference between migration for key exchange and digital
+   signatures lies in the nature of the threats they address.  Key
+   exchange mechanisms are primarily concerned with confidentiality,
+   which can be compromised retrospectively through the harvest-now-
+   decrypt-later threat.  This makes the transition to post-quantum KEMs
+   more urgent, as encrypted data captured today could be decrypted in
+   the future if a single algorithm fails.
+
    Unlike key exchange, authentication cannot be broken retrospectively,
    meaning quantum-safe signatures are only needed once
    cryptanalytically relevant quantum computers (CRQCs) become
-   available.  As a result, the migration to post-quantum digital
-   signatures is less time-sensitive than for KEMs, allowing for a more
-   deliberate and carefully planned transition.  Since post-quantum
-   signature schemes often involve larger keys and signatures, greater
-   computational overhead, and increased implementation complexity,
-   their deployment may incur higher costs - reinforcing the importance
-   of keeping the migration as simple and efficient as possible.
-
-   TODO: migration strategies, hybrid signatures vs dual signatures,
-   etc.
+   available.  Migration strategies for digital signatures can therefore
+   be more measured and aligned with the anticipated timeline for
+   quantum threats.  The problem space for digital signatures is also
+   more complex, as they are often tied to long-lived identities and
+   certificates, requiring updates to public key infrastructure (PKI)
+   and trust models.  The draft
+   [I-D.draft-reddy-pquip-pqc-signature-migration] lists multiple
+   approaches for deployment on PQ signatures and their trade-offs.  As
+   a result, the transition to post-quantum digital signatures can be
+   planned and executed over a longer timeframe, allowing for thorough
+   testing, standardization, and gradual adoption taking into account
+   the readiness of infrastructure, applications and costs of the
+   transition.
 
 4.1.  PQ/T hybrid digital signatures
 
@@ -407,6 +418,14 @@ Table of Contents
               <https://www.rfc-editor.org/rfc/rfc9794>.
 
 11.2.  Informative References
+
+   [I-D.draft-reddy-pquip-pqc-signature-migration]
+              Reddy.K, T. and D. Wing, "Guidance for Migration to
+              Composite, Dual, or PQC-Only Authentication", Work in
+              Progress, Internet-Draft, draft-reddy-pquip-pqc-signature-
+              migration-00, 27 September 2025,
+              <https://datatracker.ietf.org/doc/html/draft-reddy-pquip-
+              pqc-signature-migration-00>.
 
    [I-D.ietf-pquip-pqc-hsm-constrained]
               Reddy.K, T., Wing, D., S, B., and K. Kwiatkowski,
