@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-05T01:38:33.822939+00:00",
+  "timestamp": "2025-10-07T01:23:21.504365+00:00",
   "repo": "kriskwiatkowski/draft-kwiatkowski-pqc-migration",
   "labels": [
     {
@@ -55,16 +55,24 @@
       "id": "I_kwDOO3m8fs7DCtGN",
       "title": "Review, comment and link to with draft-li-pquip",
       "url": "https://github.com/kriskwiatkowski/draft-kwiatkowski-pqc-migration/issues/1",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "kriskwiatkowski",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Both of this two I-Ds is related to the migration and transition:\n\n* https://datatracker.ietf.org/doc/draft-li-pquip-escape-message/01/\n* https://datatracker.ietf.org/doc/draft-li-pquip-teleco-pqc-migration/\n\nIn particular, I would like to emphasize the escape message. You mentioned and discussed it in Chapter 5, \"Infrastructure Costs.\" I believe that a flag or trigger message describe in this I-D is absolutely a very useful feature. If you have time, you can read more in my I-Ds, and welcome comments.\n\n",
       "createdAt": "2025-07-29T06:18:41Z",
-      "updatedAt": "2025-07-29T06:18:41Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-10-05T16:47:30Z",
+      "closedAt": "2025-10-05T16:47:30Z",
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "OWNER",
+          "body": "Duplicate #7 ",
+          "createdAt": "2025-10-05T16:47:30Z",
+          "updatedAt": "2025-10-05T16:47:30Z"
+        }
+      ]
     },
     {
       "number": 2,
@@ -87,32 +95,48 @@
       "id": "I_kwDOO3m8fs7DDpLa",
       "title": "Remove text about PQ digital signatures",
       "url": "https://github.com/kriskwiatkowski/draft-kwiatkowski-pqc-migration/issues/3",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "kriskwiatkowski",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "> \u201c\u2026the migration to post-quantum digital signatures is less time-sensitive than for KEMs, allowing for a more deliberate and carefully planned transition\u2026\u201d: This was true in the early days of PQ work, and HNDL attacks helped to frame the problem of PQ need; but of course things change. I recommend that this be removed.",
       "createdAt": "2025-07-29T07:38:43Z",
-      "updatedAt": "2025-07-29T07:38:43Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-10-05T16:36:39Z",
+      "closedAt": "2025-10-05T16:36:39Z",
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "OWNER",
+          "body": "addressed by #16 ",
+          "createdAt": "2025-10-05T16:36:38Z",
+          "updatedAt": "2025-10-05T16:36:38Z"
+        }
+      ]
     },
     {
       "number": 4,
       "id": "I_kwDOO3m8fs7DEGFL",
       "title": "Scheme compromise and key compromise are mis-matched",
       "url": "https://github.com/kriskwiatkowski/draft-kwiatkowski-pqc-migration/issues/4",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "kriskwiatkowski",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "> \u201c\u2026if one scheme is compromised, forgery is only a concern while the corresponding public key remains trusted\u2014most systems already revoke or rotate compromised keys\u201d: There is a mis-match in this sentence between scheme compromise and key compromise. If a scheme is compromised, rotating a key does nothing to fix the vulnerability.",
       "createdAt": "2025-07-29T08:19:50Z",
-      "updatedAt": "2025-07-29T08:19:50Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-10-05T17:54:56Z",
+      "closedAt": "2025-10-05T17:54:56Z",
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "OWNER",
+          "body": "After reviewing I decided to remove the sentence. I don't think it fits very well here. I've rewrote this section.",
+          "createdAt": "2025-10-05T17:36:38Z",
+          "updatedAt": "2025-10-05T17:36:38Z"
+        }
+      ]
     },
     {
       "number": 5,
@@ -174,10 +198,47 @@
       "labels": [],
       "body": "Hi Kris,\n\nThank you for writing this draft, I think it covers lots of useful ground.\n\nAbstract: \"It is intended for cryptographic protocol designers within the IETF community, as well as technology developers and implementers responsible for deploying PQC standards.\" - this audience is too broad. The assumed background varies greatly between these target audiences, and also, the latter audience implicitly expects the former to do much of the prep work for them, e.g. decide on hybrid vs. pure, or solve for the \"combinatorial explosion\".\n\n\"whether to begin the migration immediately or adopt a phased timeline\" - most orgs will be doing both \u2013 start immediately but with a phased approach.\n\nSec. 3 assumes that the reader knows some basics, like which algorithms are under threat, what PQC is, and even the notion of PQ/T hybrid. Can we refer the reader to a source for this background?\n\nTypo: because resilience\n\"if a single algorithm fails\" - this requires further explanation because we have never had this strategy before. We should explain that traditional algorithms will be broken by CRQCs, and PQ algorithms are risky because they are relatively new and so have not undergone enough cryptanalysis.\n\n\"importance of PQ/T hybrid KEMs will diminish in time\" - and then we should add the consequence, which is another migration phase, this time to pure PQ.\n\n\"the migration to post-quantum digital signatures is less time-sensitive\" - with the well known exception of very long lived verifiers (IOT devices deployed in the field and accepting software updates).\n\n\"Long-term protection through hybrids may be limited in practice\" - I'm not sure about this assertion. Key rotation is one thing, but if a scheme/algorithm is compromised, you also need to upgrade the software which takes a lot longer than key management timeframes. The following paragraph recommends crypto agility as the better solution, in practice this is less of a panacea because you end up with lightly tested software and infrastructure that could easily fail when the time comes.\n\n\"a comprehensive inventory of cryptographic use\" - nowadays this is basically an inventory of the entire org's software. So I'm wondering is a separate inventory even makes sense. Moreover, if it does, you would have already built it (and the associated organizational processes) for the migration into TLS 1.3.\nBest,\n\n                Yaron",
       "createdAt": "2025-08-12T04:44:59Z",
-      "updatedAt": "2025-08-12T04:44:59Z",
+      "updatedAt": "2025-10-05T18:29:28Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "kriskwiatkowski",
+          "authorAssociation": "OWNER",
+          "body": "Not addressed, yet\n\n* Abstract: \"It is intended for cryptographic protocol designers within the IETF community, as well as technology developers and implementers responsible for deploying PQC standards.\" - this audience is too broad. The assumed background varies greatly between these target audiences, and also, the latter audience implicitly expects the former to do much of the prep work for them, e.g. decide on hybrid vs. pure, or solve for the \"combinatorial explosion\".\n\n* Sec. 3 assumes that the reader knows some basics, like which algorithms are under threat, what PQC is, and even the notion of PQ/T hybrid. Can we refer the reader to a source for this background?\n\n* \"Long-term protection through hybrids may be limited in practice\" - I'm not sure about this assertion. Key rotation is one thing, but if a scheme/algorithm is compromised, you also need to upgrade the software which takes a lot longer than key management timeframes. The following paragraph recommends crypto agility as the better solution, in practice this is less of a panacea because you end up with lightly tested software and infrastructure that could easily fail when the time comes.\n\n> I think mechanisms used by agility should also be tested. We could for example store ID with the key, this eliminates chances of failure (i.e. when loading new key update process may test if the key can be used, hence checks if algorithm is available in the system).\n\n* \"a comprehensive inventory of cryptographic use\" - nowadays this is basically an inventory of the entire org's software. So I'm wondering is a separate inventory even makes sense. Moreover, if it does, you would have already built it (and the associated organizational processes) for the migration into TLS 1.3.\n\n> I don't think this is correct. \n",
+          "createdAt": "2025-10-05T18:29:28Z",
+          "updatedAt": "2025-10-05T18:29:28Z"
+        }
+      ]
     }
   ],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 16,
+      "id": "PR_kwDOO3m8fs6sJobm",
+      "title": "Rewrites text about migration needs",
+      "url": "https://github.com/kriskwiatkowski/draft-kwiatkowski-pqc-migration/pull/16",
+      "state": "MERGED",
+      "author": "kriskwiatkowski",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-05T16:35:24Z",
+      "updatedAt": "2025-10-05T16:36:12Z",
+      "baseRepository": "kriskwiatkowski/draft-kwiatkowski-pqc-migration",
+      "baseRefName": "main",
+      "baseRefOid": "3904c9a611fc8028e694dfe1348bf28a93aa70aa",
+      "headRepository": "kriskwiatkowski/draft-kwiatkowski-pqc-migration",
+      "headRefName": "kris/closes_3",
+      "headRefOid": "94000b9bce7c76b874e6a1cac15477358a167b76",
+      "closedAt": "2025-10-05T16:36:12Z",
+      "mergedAt": "2025-10-05T16:36:12Z",
+      "mergedBy": "kriskwiatkowski",
+      "mergeCommit": {
+        "oid": "c8d71714bee99aa7feb64eb5e3a51a4581e21d1d"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
